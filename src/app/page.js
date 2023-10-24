@@ -72,7 +72,9 @@ export default function Home() {
       <div>Level: {level + 1}</div>
       <div>Banyak Langkah: {step.length}</div>
       <div className='flex'>
-        <div className={`grid gap-1 grid-cols-${board[0].length}`}>
+        {/* harusnya ini dinamic */}
+        {/* <div className={`grid gap-1 grid-cols-${board[0].length}`}> */}
+        <div className={`grid gap-1 grid-cols-8`}>
           {board.map((baris, indexRow) => {
             return baris.map((item, indexCol) => {
               return (
