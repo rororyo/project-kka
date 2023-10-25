@@ -32,7 +32,7 @@ export default function Home() {
 
     // handle merah
     if (board[indexRow][indexCol] == 8) {
-      toastError();
+      if(!isMouseDown)toastError();
       return;
     }
 
@@ -54,7 +54,7 @@ export default function Home() {
         // Hapus step terakhir
         setStep((prev) => prev.slice(0, -1));
       } else {
-        // toastError();
+        // if(!isMouseDown) toastError();
       }
       return;
     }
@@ -78,7 +78,7 @@ export default function Home() {
       // tambah step sekarang
       setStep((prev) => [...prev, [indexRow, indexCol]]);
     } else {
-      toastError();
+      if(!isMouseDown) toastError();
     }
   };
 
