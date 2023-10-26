@@ -159,7 +159,7 @@ export default function Home() {
                   step.length > 0 &&
                   step[step.length - 1][0] == indexRow &&
                   step[step.length - 1][1] == indexCol &&
-                  'bg-blue-700'
+                  'bg-blue-600 md:hover:scale-125 animate-pulse'
                 }
                 `}
                     key={indexCol}
