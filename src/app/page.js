@@ -202,12 +202,12 @@ export default function Home() {
         <div className='flex'>
           {/* harusnya ini dinamic */}
           {/* <div className={`grid gap-1 grid-cols-${board[0].length}`}> */}
-          <div className={`grid grid-cols-8`}>
+          <div className={`grid grid-cols-8`} id='board'>
             {board.map((baris, indexRow) => {
               return baris.map((item, indexCol) => {
                 return (
                   <div
-                    className={`w-8 h-8 cursor-pointer border-[1.25px] border-black
+                    className={`w-8 h-8 cursor-pointer border-[1px] border-black
                 ${item == 0 && 'bg-white'} 
                 ${item == 1 && 'bg-red-500'} 
                 ${item == 2 && 'bg-green-500'} 
@@ -224,16 +224,26 @@ export default function Home() {
                     onMouseDown={() => handleClick(indexRow, indexCol, baris)}
                     onMouseEnter={() => handleDrag(indexRow, indexCol, baris)}
                     onMouseUp={() => setIsMouseDown(false)}
+                    onTouchMove={(e) => {
+                      const boardC = document.getElementById('board');
+                      const touchX =
+                        e.touches[0].pageX - boardC.getBoundingClientRect().left;
+                      const touchY =
+                        e.touches[0].pageY - boardC.getBoundingClientRect().top;
+
+                      // Hitung indeks div berdasarkan posisi sentuhan
+                      const col = Math.floor(touchX / 33); // 32px lebar div dengan 1px grid gap
+                      const row = Math.floor(touchY / 33); // 32px tinggi div dengan 1px grid gap
+                      handleClick(row, col, board[row]);
+                    }}
                   >
-                    {/* {item == 9 && <img src='/assets/toko.png'></img>} */}
-                    {/* {item == 0 && <img src='/assets/distributor.png' className='h-full'></img>} */}
                   </div>
                 );
               });
             })}
           </div>
         </div>
-        <div className='flex flex-row'>
+        <div className='flex-row hidden md:flex'>
           Mouse is Down:{' '}
           <h4 className='font-bold text-red-400'>
             {' '}
